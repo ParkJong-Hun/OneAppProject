@@ -1,39 +1,72 @@
 package com.example.oneappproejct.api.oneappprojectapi.controller
 
-import com.example.oneappproejct.api.oneappprojectapi.entity.Post
+import com.example.oneappproejct.api.oneappprojectapi.dto.CommentResponseDto
+import com.example.oneappproejct.api.oneappprojectapi.dto.PostResponseDto
+import org.springframework.http.HttpStatus
+import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Controller
+import org.springframework.web.bind.annotation.DeleteMapping
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PatchMapping
+import org.springframework.web.bind.annotation.PathVariable
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.PutMapping
 
 @Controller
 class ApiController {
-    fun createPost() {
+    @PostMapping("/post")
+    fun createPost() : ResponseEntity<PostResponseDto> {
+        return ResponseEntity.status(HttpStatus.OK).build()
     }
 
-    fun getAllPost(): List<Post> {
-        return listOf()
+    @GetMapping("/post")
+    fun getAllPost() : ResponseEntity<List<PostResponseDto>> {
+        return ResponseEntity.status(HttpStatus.OK).build()
     }
 
-    fun getPost(): Post {
-        return Post()
+    @GetMapping("/post/{id}")
+    fun getPost(@PathVariable("id") id : Long) : ResponseEntity<PostResponseDto> {
+        return ResponseEntity.status(HttpStatus.OK).build()
     }
 
-    fun putPost() {
+    @PutMapping("/post/{id}")
+    fun putPost(@PathVariable("id") id : Long) : ResponseEntity<PostResponseDto> {
+        return ResponseEntity.status(HttpStatus.OK).build()
     }
 
-    fun deletePost() {
+    @DeleteMapping("/post/{id}")
+    fun deletePost(@PathVariable("id") id : Long) : ResponseEntity<PostResponseDto> {
+        return ResponseEntity.status(HttpStatus.OK).build()
     }
 
-    fun createComment() {
+    @PostMapping("/post/{postId}")
+    fun createComment(@PathVariable("id") id : Long) : ResponseEntity<CommentResponseDto> {
+        return ResponseEntity.status(HttpStatus.OK).build()
     }
 
-    fun readAllCommentOnPost() {
+    @GetMapping("/post/{postId}")
+    fun readAllCommentOnPost(@PathVariable("postId") postId : Long) : ResponseEntity<CommentResponseDto> {
+        return ResponseEntity.status(HttpStatus.OK).build()
     }
 
-    fun readComment() {
+    @GetMapping("/post/{postId}/{commentId}")
+    fun readComment(@PathVariable("postId") postId : Long,
+                    @PathVariable("commentId") commentId : Long
+    ): ResponseEntity<CommentResponseDto> {
+        return ResponseEntity.status(HttpStatus.OK).build()
     }
 
-    fun patchComment() {
+    @PatchMapping("/post/{postId}/{commentId}")
+    fun patchComment(@PathVariable("postId") postId : Long,
+                     @PathVariable("commentId") commentId : Long
+    ) : ResponseEntity<CommentResponseDto> {
+        return ResponseEntity.status(HttpStatus.OK).build()
     }
 
-    fun deleteComment() {
+    @DeleteMapping("/post/{postId}/{commentId}")
+    fun deleteComment(@PathVariable("postId") postId : Long,
+                      @PathVariable("commentId") commentId : Long
+    ) : ResponseEntity<CommentResponseDto> {
+        return ResponseEntity.status(HttpStatus.OK).build()
     }
 }
