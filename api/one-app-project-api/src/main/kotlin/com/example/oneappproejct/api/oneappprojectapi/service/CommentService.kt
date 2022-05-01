@@ -2,8 +2,11 @@ package com.example.oneappproejct.api.oneappprojectapi.service
 
 import com.example.oneappproejct.api.oneappprojectapi.dto.CommentRequestDto
 import com.example.oneappproejct.api.oneappprojectapi.dto.CommentResponseDto
+import com.example.oneappproejct.api.oneappprojectapi.repository.CommentRepository
+import org.springframework.stereotype.Service
 
-class CommentService {
+@Service
+class CommentService(val commentRepository: CommentRepository) {
     fun createComment(id: Long, body: CommentRequestDto): CommentResponseDto {
         return CommentResponseDto()
     }

@@ -2,6 +2,10 @@ package com.example.oneappproejct.api.oneappprojectapi.controller
 
 import com.example.oneappproejct.api.oneappprojectapi.dto.CommentResponseDto
 import com.example.oneappproejct.api.oneappprojectapi.dto.PostResponseDto
+import com.example.oneappproejct.api.oneappprojectapi.repository.CommentRepository
+import com.example.oneappproejct.api.oneappprojectapi.repository.PostRepository
+import com.example.oneappproejct.api.oneappprojectapi.service.CommentService
+import com.example.oneappproejct.api.oneappprojectapi.service.PostService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Controller
@@ -13,7 +17,10 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
 
 @Controller
-class ApiController {
+class ApiController(
+    val postService: PostService,
+    val commentService: CommentService
+) {
     @PostMapping("/post")
     fun createPost() : ResponseEntity<PostResponseDto> {
         return ResponseEntity.status(HttpStatus.OK).build()

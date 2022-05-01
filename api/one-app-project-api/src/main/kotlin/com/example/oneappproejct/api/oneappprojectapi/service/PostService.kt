@@ -2,10 +2,11 @@ package com.example.oneappproejct.api.oneappprojectapi.service
 
 import com.example.oneappproejct.api.oneappprojectapi.dto.PostRequestDto
 import com.example.oneappproejct.api.oneappprojectapi.dto.PostResponseDto
+import com.example.oneappproejct.api.oneappprojectapi.repository.PostRepository
 import org.springframework.stereotype.Service
 
 @Service
-class PostService {
+class PostService(val postRepository: PostRepository) {
     fun createPost(body: PostRequestDto): PostResponseDto {
         return PostResponseDto()
     }
