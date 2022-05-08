@@ -3,10 +3,11 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/oneapp
     username: root
-    password: root
-
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: false
     hibernate:
       ddl-auto: create
+  batch:
+    jdbc:
+      initialize-schema=always:
