@@ -1,7 +1,32 @@
 package com.example.oneappproejct.api.oneappprojectapi.entity
 
-import javax.persistence.Entity
+import org.hibernate.annotations.UpdateTimestamp
+import org.jetbrains.annotations.NotNull
+import org.springframework.data.annotation.CreatedBy
+import java.sql.Timestamp
+import javax.persistence.*
 
 @Entity
-class Comment {
-}
+data class Comment(
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val id: Long,
+
+    @Column
+    @NotNull
+    @ManyToOne
+    val commenter: String,
+
+    @Column
+    val content: String,
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="post_id", referencedColumnName = "id")
+    val postId: Post,
+
+    @CreatedBy
+    val created: Timestamp,
+
+    @UpdateTimestamp
+    val updated: Timestamp
+)
