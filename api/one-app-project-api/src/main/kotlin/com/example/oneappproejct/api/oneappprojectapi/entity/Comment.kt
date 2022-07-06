@@ -12,12 +12,9 @@ data class Comment(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long,
 
-    @Column
     @NotNull
-    @ManyToOne
     val commenter: String,
 
-    @Column
     val content: String,
 
     @ManyToOne(fetch = FetchType.LAZY)
