@@ -96,5 +96,3 @@ class ApiController(
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build()
     }
 }
-
-//FIXME: fix mysql ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)

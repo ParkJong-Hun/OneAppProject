@@ -13,16 +13,12 @@ data class Post(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long,
 
-    @Column
-    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="author_id", referencedColumnName = "id")
     val author: User,
 
-    @Column
     @NotNull
     val title: String,
 
-    @Column
     val content: String,
 
     @CreatedBy
