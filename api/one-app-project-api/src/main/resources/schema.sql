@@ -1,16 +1,31 @@
-CREATE TABLE User(
-    id INTEGER,
-    nickname varchar(20),
-    created TimeStamp,
-    updated TimeStamp
-    primary key(id)
-);
+CREATE TABLE if not exists `user`(
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `nickname` VARCHAR(20) NOT NULL,
+    `created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY(`id`),
+    UNIQUE KEY `nickname`(`nickname`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE Comment(
-    id INTEGER,
-    commenter varchar(20),
-    postId INTEGER,
-    created TimeStamp,
-    updated TimeStamp
-    primary key(id)
-);
+CREATE TABLE if not exists `post`(
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `title` VARCHAR(50) NOT NULL,
+    `contents` VARCHAR(300) NOT NULL,
+    `author_id` INT NOT NULL,
+    `created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY(`id`),
+    FOREIGN KEY(`author_id`) REFERENCES `user`(`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE if not exists `comment`(
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `author_id` INT NOT NULL,
+    `contents` VARCHAR(100) NOT NULL,
+    `post_id` INT NOT NULL,
+    `created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY(`id`),
+    FOREIGN KEY(`post_id`) REFERENCES `post`(`id`),
+    FOREIGN KEY(`author_id`) REFERENCES `user`(`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
