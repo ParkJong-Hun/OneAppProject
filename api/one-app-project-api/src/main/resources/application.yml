@@ -10,9 +10,9 @@ spring:
   jpa:
     database: mysql
     show-sql: true
-    generate-ddl: true
+    generate-ddl: false
     hibernate:
-      ddl-auto: create
+      ddl-auto: none
   batch:
     jdbc:
       initialize-schema: always
